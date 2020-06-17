@@ -1,0 +1,9 @@
+1. SimpleChannelInboundHandler和ChannelInboundHandlerAdapter的区别？如何选择？
+参考：
+    a. server端调用channelRead()方法后，处理仍旧没有完成。处理完成后需要channelReadComplete()
+    将缓存区中数据全部刷新发送，这样服务端才完成处理。
+    b. client端调用channelRead0()方法后，没有后续的业务处理，简单说，本次通讯结束。
+    （这里有个疑点：在写channelRead0方法的时候，标识了：TCP协议只保证传输的顺序，并不保证传输
+    的完成性，那么，客户端如何知道接受完全的？如果从广度的理解，channelRead0是读取完成标识，这
+    样是可以理解的）
+
